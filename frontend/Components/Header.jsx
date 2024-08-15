@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className="w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between px-4 md:px-8 shadow-md sticky top-0 z-20">
             <Link href="/">
-                <NikeLogo className="w-[40px] md:w-[60px]" alt="Logo" /> {/* Use the imported SVG as a component */}
+                <NikeLogo className="w-[40px] md:w-[60px]" alt="Logo" /> 
             </Link>
 
             <div className="flex-grow flex justify-center">

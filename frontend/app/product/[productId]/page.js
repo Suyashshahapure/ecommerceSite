@@ -1,13 +1,14 @@
-import React from "react";
-// import { useRouter } from "next/router";
+"use client";
+import React, { useContext } from "react";
+
 import ProductDescription from "../../../Components/ProductDescription";
 import api from "../../../Data/api.json";
 
-const Id = ({ params }) => {
+const Id = ({ params, cart, cartTotal }) => {
   // const router = useRouter();
 
   const id = params.productId;
-  console.log(id)
+  
 
   
   if (!id) {
@@ -29,20 +30,18 @@ const Id = ({ params }) => {
   if (!product) {
     return <div>Product not found</div>;
   }
-  console.log("Router Query ID:", id);
-console.log("Product ID (Parsed):", productId);
-console.log("Product Data:", product);
+//   console.log("Router Query ID:", id);
+// console.log("Product ID (Parsed):", productId);
+// console.log("Product Data:", product);
 
 
   
   return (
-    // <>
-    // <div>hi</div>
-    // </>
     <ProductDescription
       price={product.retail_price_cents}
       originalPrice={product.original_price}
       product={product}
+     
     />
   );
 };

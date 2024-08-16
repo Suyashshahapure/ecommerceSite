@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getDiscountedPricePercentage } from "../utils/helper";
 
 // ProductCard Component
-const ProductCard = ({ id, image, name, price, originalPrice }) => {
+const ProductCard = ({ id, image, name, price, originalPrice, cart, cartTotal}) => {
   return (
     <Link
       href={`/product/${id}`}

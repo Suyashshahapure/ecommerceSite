@@ -27,6 +27,19 @@ const ProductDescription = ({ price, product }) => {
   // if(!cart){
   //   set({})
   // }
+
+  function updateCart(item) {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+
+    if (!cart) {
+      cart = [item];
+    } else {
+      cart = [...cart, item];
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
   function notify() {
     toast("✓ successfully added to cart !!! ", {
       position: "bottom-right",
@@ -138,6 +151,8 @@ const ProductDescription = ({ price, product }) => {
                       behavior: "smooth",
                     });
                   } else {
+                    updateCart(product);
+
                     notify();
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }

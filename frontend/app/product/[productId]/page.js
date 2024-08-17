@@ -30,9 +30,7 @@ const Id = ({ params, cart, cartTotal }) => {
   if (!product) {
     return <div>Product not found</div>;
   }
-//   console.log("Router Query ID:", id);
-// console.log("Product ID (Parsed):", productId);
-// console.log("Product Data:", product);
+
 
 
   

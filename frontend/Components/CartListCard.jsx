@@ -7,7 +7,12 @@ const CartListCard = ({ item, removeFromCart, updateCartItem }) => {
   return (
     <div className="flex py-5 gap-3 md:gap-5 border-b">
       <div className="shrink-0 aspect-square w-[50px] md:w-[120px]">
-        <Image src={item.main_picture_url} alt={item.name} width={120} height={120} />
+        <Image
+          src={item.main_picture_url}
+          alt={item.name}
+          width={120}
+          height={120}
+        />
       </div>
       <div className="w-full flex flex-col">
         <div className="flex flex-col md:flex-row justify-between">
@@ -35,9 +40,9 @@ const CartListCard = ({ item, removeFromCart, updateCartItem }) => {
               <div className="font-semibold">Quantity:</div>
               <select
                 className="hover:text-black"
-                value={item.quantity}
+                value={item.Quantity}
                 onChange={(e) =>
-                  updateCartItem(item.id, parseInt(e.target.value))
+                  updateCartItem(item.id, parseInt(e.target.value), item.size )
                 }
               >
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((q) => (
@@ -49,7 +54,7 @@ const CartListCard = ({ item, removeFromCart, updateCartItem }) => {
             </div>
           </div>
           <RiDeleteBin6Line
-            onClick={() => removeFromCart(item.id)}
+            onClick={() => removeFromCart(item.id , item.size)}
             className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
           />
         </div>

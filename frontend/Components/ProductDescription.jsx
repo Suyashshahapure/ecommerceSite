@@ -7,10 +7,12 @@ import { getDiscountedPricePercentage } from "../utils/helper";
 import Footer from "./Footer";
 import rehypeRaw from "rehype-raw";
 import Header from "./Header";
+import Link from "next/link";
 
 const ProductDescription = ({ price, product }) => {
   const [selectedSize, setSelectedSize] = useState();
   const [showError, setShowError] = useState(false);
+  const[quantity, setQuatity]=useState(1);
 
   // uselocalStorage = cart : [{produ}]
 
@@ -29,7 +31,7 @@ const ProductDescription = ({ price, product }) => {
   // }
 
   function updateCart(item) {
-    const productWithSize = { ...item, size: selectedSize };
+    const productWithSize = { ...item, size: selectedSize , Quantity:quantity };
 
     let cart = localStorage.getItem("cart");
 
@@ -38,8 +40,15 @@ const ProductDescription = ({ price, product }) => {
     } else {
       cart = JSON.parse(cart);
     }
+    // check if the cart have product with same id if same check if the size is same or not 
+    const existingIndex = cart.findIndex((cartItem)=>cartItem.id===productWithSize.id && cartItem.size === productWithSize.size);
+    if(existingIndex !==-1){
+          cart[existingIndex].Quantity += 1;
+    }else{
+      cart = [...cart, productWithSize];
+    }
 
-    cart = [...cart, productWithSize];
+   
 
     localStorage.setItem("cart", JSON.stringify(cart));
   }
@@ -145,6 +154,7 @@ const ProductDescription = ({ price, product }) => {
                 {/* PRODUCT SIZE RANGE END */}
                 {/* ADD TO CART BUTTON START */}
               </div>
+              <Link href="/CartItems">
               <button
                 className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
                 onClick={() => {
@@ -164,6 +174,7 @@ const ProductDescription = ({ price, product }) => {
               >
                 Add to Cart
               </button>
+              </Link>
               <div>
                 <div className="text-lg font-bold mb-5">Product Details</div>
                 <div className="markdown text-md mb-5">

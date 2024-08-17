@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import Wrapper from "./Wrapper";
-import Header from "./Header";
-import Footer from "./Footer";
-import CartListCard from "./CartListCard";
+import Wrapper from "../../Components/Wrapper";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
+import CartListCard from "../../Components/CartListCard";
 
 const CartItems = () => {
   const [cartData, setCartData] = useState([]);
@@ -13,18 +13,18 @@ const CartItems = () => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartData(cart);
-    console.log("Initial cartData:", cart); // Debugging
+    
   }, []);
 
-  const removeFromCart = (id) => {
-    const updatedCart = cartData.filter((item) => item.id !== id);
+  const removeFromCart = (id , size) => {
+    const updatedCart = cartData.filter((item) => !(item.id ===id && item.size===size));
     setCartData(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const updateCartItem = (id, quantity) => {
+  const updateCartItem = (id, quantity , size) => {
     const updatedCart = cartData.map((item) =>
-      item.id === id ? { ...item, quantity } : item
+      item.id === id && item.size===size ? { ...item, Quantity: quantity } : item
     );
     setCartData(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -33,7 +33,7 @@ const CartItems = () => {
   const subTotal = useMemo(
     () =>
       cartData.reduce(
-        (total, item) => total + item.retail_price_cents * item.quantity,
+        (total, item) => total + item.retail_price_cents * item.Quantity,
         0
       ),
     [cartData]
@@ -42,7 +42,7 @@ const CartItems = () => {
   const totalDiscount = useMemo(
     () =>
       cartData.reduce(
-        (total, item) => total + item.quantity * 1000, // ₹100 discount per item
+        (total, item) => total + item.Quantity * 1000, // ₹100 discount per item
         0
       ),
     [cartData]
@@ -53,15 +53,12 @@ const CartItems = () => {
     [subTotal, totalDiscount]
   );
 
-  const HandleONclick = () => {
-    // Your checkout logic here
-  };
+  // const HandleONclick = () => {
+      
+  // };
 
   // Debugging: log cartData, subtotal, discount, and total
-  console.log("Cart Data:", cartData);
-  console.log("Subtotal:", subTotal);
-  console.log("Total Discount:", totalDiscount);
-  console.log("Total After Discount:", totalAfterDiscount);
+  
 
   return (
     <div>
@@ -125,12 +122,12 @@ const CartItems = () => {
                       international transaction fees.
                     </div>
                   </div>
-                  <button
+                  <Link href="/Sucess"
                     className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
-                    onClick={HandleONclick}
+                    // onClick={HandleONclick}
                   >
                     Checkout
-                  </button>
+                  </Link>
                 </div>
                 {/* SUMMARY END */}
               </div>

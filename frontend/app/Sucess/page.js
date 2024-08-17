@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "./Wrapper";
+import Wrapper from "../../Components/Wrapper";
 
 import Link from "next/link";
 const Sucess = () => {

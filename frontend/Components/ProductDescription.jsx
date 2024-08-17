@@ -29,13 +29,17 @@ const ProductDescription = ({ price, product }) => {
   // }
 
   function updateCart(item) {
-    let cart = JSON.parse(localStorage.getItem("cart"));
+    const productWithSize = { ...item, size: selectedSize };
+
+    let cart = localStorage.getItem("cart");
 
     if (!cart) {
-      cart = [item];
+      cart = [];
     } else {
-      cart = [...cart, item];
+      cart = JSON.parse(cart);
     }
+
+    cart = [...cart, productWithSize];
 
     localStorage.setItem("cart", JSON.stringify(cart));
   }

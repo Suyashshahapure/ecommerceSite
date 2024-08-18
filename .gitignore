@@ -35,8 +35,6 @@ Thumbs.db
 # Coverage reports
 coverage/
 
-# Next.js build output
-.next/
 
 # TypeScript
 *.tsbuildinfo

@@ -1,4 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+I created a Nike store website where you can select shoes and shop. If the hosted link is not working, please reload it; it might be an issue with the provider.
+
+
+
+https://github.com/user-attachments/assets/5dd6daaf-33d6-4cc1-abf0-30dd3e60cba6
+
 
 ## Getting Started
 

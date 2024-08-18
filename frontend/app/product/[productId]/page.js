@@ -1,10 +1,10 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 
 import ProductDescription from "../../../Components/ProductDescription";
 import api from "../../../Data/api.json";
 
-const Id = ({ params, cart, cartTotal }) => {
+const Id = ({ params }) => {
   // const router = useRouter();
 
   const id = params.productId;
